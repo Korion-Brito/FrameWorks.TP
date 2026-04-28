@@ -14,7 +14,7 @@ export class App {
   arrayDeTarefas: Tarefa[] = [];
   apiURL: string;
   constructor(private http: HttpClient) {
-    this.apiURL = 'https://backend-todo-uzvx.onrender.com';
+    this.apiURL = 'https://apitarefaskorion256225.onrender.com';
     this.READ_tarefas();
   }
 
