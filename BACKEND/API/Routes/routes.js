@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router()
 module.exports = router;
-const modeloTarefa = require('../models/tarefa');
+const modeloTarefa = require('../Models/tarefa');
 
 router.post('/post', async (req, res) => {
  const objetoTarefa = new modeloTarefa({
