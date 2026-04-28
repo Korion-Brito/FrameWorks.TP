@@ -11,7 +11,7 @@
 </button>
 
   <ul>
-    <li *ngFor="let tarefaDoLoop of arrayDeTarefas">
+    <li *ngFor="let tarefaDoLoop of arrayDeTarefas()">
       <app-item
         [tarefa]="tarefaDoLoop"
         (remover)="DELETE_tarefas($event)"
