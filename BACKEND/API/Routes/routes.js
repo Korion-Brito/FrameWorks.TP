@@ -19,12 +19,10 @@ router.post('/post', async (req, res) => {
 })
 
 //Método GET
-router.get('/getAll/:nome/:ra', async (req, res) => {
+router.get('/getAll/:', async (req, res) => {
  try {
  const resultados = await modeloTarefa.find();
- res.json({korion: nome,
-    256225: ra,
-    dados: resultados});
+ res.json(resultados)
  }
  catch (error) {
  res.status(500).json({ message: error.message })
