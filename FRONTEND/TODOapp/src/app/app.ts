@@ -19,6 +19,15 @@ export class App implements OnInit {
   ngOnInit() {
     this.READ_tarefas();
   }
+   READ_tarefas() {
+  console.log("CHAMOU GET");
+
+  this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`)
+    .subscribe((resultado) => {
+      console.log("RETORNO:", resultado);
+      this.arrayDeTarefas = resultado;
+    });
+}
 
   CREATE_tarefa(descricaoNovaTarefa: string) {
     if (!descricaoNovaTarefa.trim()) return;
@@ -30,11 +39,7 @@ export class App implements OnInit {
     });
   }
 
-  READ_tarefas() {
-    this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe((resultado) => {
-      this.arrayDeTarefas = resultado;
-    });
-  }
+ 
 
   DELETE_tarefas(tarefaAserRemovida: Tarefa) {
     const id = tarefaAserRemovida._id;
