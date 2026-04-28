@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Tarefa } from './tarefa';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,22 +8,24 @@ import { HttpClient } from '@angular/common/http';
   standalone: false,
   styleUrl: './app.css',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('TODOapp');
 
   arrayDeTarefas: Tarefa[] = [];
-  apiURL: string;
+  apiURL: string = 'https://apitarefaskorion256225.onrender.com';
 
-  constructor(private http: HttpClient) {
-    this.apiURL = 'https://apitarefaskorion256225.onrender.com';
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
     this.READ_tarefas();
   }
 
   CREATE_tarefa(descricaoNovaTarefa: string) {
+    if (!descricaoNovaTarefa.trim()) return;
+
     const novaTarefa = new Tarefa(descricaoNovaTarefa, false);
 
-    this.http.post<Tarefa>(`${this.apiURL}/api/post`, novaTarefa).subscribe((resultado) => {
-      console.log(resultado);
+    this.http.post<Tarefa>(`${this.apiURL}/api/post`, novaTarefa).subscribe(() => {
       this.READ_tarefas();
     });
   }
@@ -37,8 +39,7 @@ export class App {
   DELETE_tarefas(tarefaAserRemovida: Tarefa) {
     const id = tarefaAserRemovida._id;
 
-    this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe((resultado) => {
-      console.log(resultado);
+    this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe(() => {
       this.READ_tarefas();
     });
   }
@@ -46,8 +47,7 @@ export class App {
   UPDATE_tarefa(tarefaAserModificada: Tarefa) {
     const id = tarefaAserModificada._id;
 
-    this.http.patch<Tarefa>(`${this.apiURL}/api/update/${id}`, tarefaAserModificada).subscribe((resultado) => {
-      console.log(resultado);
+    this.http.patch<Tarefa>(`${this.apiURL}/api/update/${id}`, tarefaAserModificada).subscribe(() => {
       this.READ_tarefas();
     });
   }
