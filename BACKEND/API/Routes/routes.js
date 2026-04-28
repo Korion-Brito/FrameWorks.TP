@@ -19,7 +19,7 @@ router.post('/post', async (req, res) => {
 })
 
 //Método GET
-router.get('/getAll/:', async (req, res) => {
+router.get('/getAll', async (req, res) => {
  try {
  const resultados = await modeloTarefa.find();
  res.json(resultados)
