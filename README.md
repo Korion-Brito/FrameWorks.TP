@@ -121,5 +121,5 @@ Estudante de Sistemas da Informação com foco em Desenvolvimento de Software, J
 
 ### 📫 Contato
 
-- LinkedIn: www.linkedin.com/in/korionbrito
+- LinkedIn: www.linkedin.com/in/kórion-brito-aa2409265/
 - GitHub: https://github.com/Korion-Brito
